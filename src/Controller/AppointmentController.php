@@ -118,7 +118,6 @@ class AppointmentController extends AbstractController
     
     /**
      *  @Route("/api/v1/appointments/{appointment_id}/signon", name="sign_on_a_appointment", methods={"PATCH"})
-     * TODO: walidacja peselu oraz ID 
      */
     public function signOnAppointment($appointment_id, Request $request){
         
@@ -129,6 +128,7 @@ class AppointmentController extends AbstractController
             $personal_id  = $request_data['personal_id'];
         }
         
+        // w walidacji peselu należy jeszcze dodać sprawdzenie jego poprawności
         if (self::fieldValidation($personal_id, 'personal_id') == false || 
             self::fieldValidation($appointment_id, 'appointment_id') == false){
           
@@ -322,7 +322,6 @@ class AppointmentController extends AbstractController
 
             } else {
 
-                // dodać walidację pól 
                 try{
 
                     $manager = $this->getDoctrine()->getManager();
@@ -464,11 +463,6 @@ class AppointmentController extends AbstractController
         return new JsonResponse($return_data, 200);
         
     }
-    
-    
-    
-    
-    
     
     
 // Metody pomocnicze
